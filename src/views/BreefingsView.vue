@@ -4,8 +4,8 @@
       <envelope content-src="/static/envelope-content/1/index.html" number="1"></envelope>
     </div>
     <div class="briefings-row">
-      <envelope content-src="/static/envelope-content/2/index.html" number="2-F"></envelope>
-      <envelope content-src="/static/envelope-content/3/index.html" number="2-A"></envelope>
+      <envelope content-src="/static/envelope-content/2-F/index.html" number="2-F"></envelope>
+      <envelope content-src="/static/envelope-content/2-A/index.html" number="2-A"></envelope>
     </div>
   </div>
 </template>
