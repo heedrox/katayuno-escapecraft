@@ -21,6 +21,7 @@
     z-index:2;
     width:100%;
     height:100%;
+    font-family: 'VT323', serif;
   }
   .keypad {
     z-index:10;
@@ -62,7 +63,6 @@
     display: block;
     height: 65vh;
     margin: auto;
-
   }
 
   /* Enter and leave animations can use different */
