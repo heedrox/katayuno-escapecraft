@@ -6,9 +6,23 @@
   .main-keypad {
     width: 100%;
   }
+
   .main-keypad .under-door p {
-    padding-top: 10vh;
-    font-size: 6vw;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media screen and (orientation:portrait) {
+    .main-keypad .under-door p {
+      font-size: 6vw;
+    }
+  }
+
+  @media screen and (orientation:landscape) {
+    .main-keypad .under-door p {
+      font-size: 6vh;
+    }
   }
 </style>
 <script>
@@ -20,7 +34,7 @@
     },
     data () {
       return {
-        textDone: '<p>¡Enhorabuena!</p><p>Has demostrado ser un buen agente.<br/>Abre ahora el sobre 2.<br/><br/>¡Date prisa, el tiempo se acaba!</p>'
+        textDone: '<p><b>¡Enhorabuena!</b></p><p>Habéis demostrado ser buenos agentes.<br/>Sin embargo, ¡no parece que la bomba se haya detenido! <br/><br/>Hasta que lleguen nuevas instrucciones, reflexionad cómo habéis trabajado la misión:<br/><br/><b>¿Y si cambiaran los parámetros de esta?</b> </p>'
       }
     }
   }
