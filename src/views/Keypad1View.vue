@@ -34,7 +34,7 @@
     },
     data () {
       return {
-        textDone: '<p><b>¡Enhorabuena!</b></p><p>Habéis demostrado ser buenos agentes.<br/>Sin embargo, ¡no parece que la bomba se haya detenido! <br/><br/>Hasta que lleguen nuevas instrucciones, reflexionad cómo habéis trabajado la misión:<br/><br/><b>¿Y si cambiaran los parámetros de esta?</b> </p>'
+        textDone: '<p><b>¡Enhorabuena!</b></p><p>Habéis demostrado ser buenos agentes.<br/>Sin embargo, ¡no parece que la bomba se haya detenido! <br/><br/>Hasta que lleguen nuevas instrucciones, reflexionad cómo habéis trabajado la misión:<br/><br/>&middot; ¿Cómo ha sido vuestro flujo de testeo? <br/>&middot; ¿Habéis podido testarlo incrementalmente? <br/>&middot; ¿Y si cambiaran las acciones a realizar sobre el fichero?<br/> </b> </p>'
       }
     }
   }

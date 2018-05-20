@@ -281,16 +281,17 @@
 <p>
 <ul class="instructions">
   <li>
-    ¡No todo lo que hicimos en la anterior misión fue en vano! El anterior código permitía obtener el fichero del que debemos partir. Este fichero se forma a partir de los bytes descartados en orden de las instrucciones de la misión 1 anterior. Es decir, de:
+    ¡No todo lo que hicimos en la anterior misión fue en vano! El anterior código permitía obtener el fichero del que debemos partir. Este fichero se forma a partir de los bytes descartados de la misión 1 anterior. Ojo: en el orden original al que están en el fichero. Es decir, de:
     <ul>
-      <li>Los primeros 50 bytes</li>
-      <li>Los últimos 50 bytes</li>
-      <li>Los bytes 2, 4, 6, 8, ...</li>
+      <li>Los primeros 100 bytes</li>
+      <li>Los bytes 3, 6, 9, ...</li>
+      <li>Los últimos 100 bytes</li>
     </ul>
 </li>
-  <li>Decodificar el contenido del siguiente modo:
+  <li>Con ese fichero, decodificar el contenido de éste del siguiente modo:
     <ul>
-      <li>Eliminar los primeros y últimos 100 bytes</li>
+      <li>Eliminar los primeros 900 bytes</li>
+      <li>Eliminar los últimos 900 bytes</li>
       <li>Eliminar 1 de cada 3 bytes (quedarse con los bytes 1, 2, 4, 5, 7, 8, 10, ...)</li>
       <li>Dar la vuelta a todo el fichero</li>
     </ul>
