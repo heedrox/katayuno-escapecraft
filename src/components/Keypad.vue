@@ -5,7 +5,9 @@
     </div>
     <transition name="slide-fade">
       <div v-if="!openDoor" class="keypad">
-        <input v-bind:class="{ 'danger': wrongNumber, 'success': rightNumber }" size="8" readonly id="keypadValue" v-model="combination">
+        <input v-bind:class="{ 'danger': wrongNumber, 'success': rightNumber }"
+               @keydown="keyboardClick"
+               size="8" id="keypadValue" v-model="combination">
         <img id="keypadImage" :src="skin" v-on:click="keypadClick">
       </div>
     </transition>
@@ -135,6 +137,8 @@
     return [getRow(relativeYClickedPosition, yMinMax(relativeKeyboardCoords)), getCol(relativeXClickedPosition, xMinMax(relativeKeyboardCoords))]
   }
 
+  const validKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'E']
+
   export default {
     name: 'escape-keypad',
     props: {
@@ -178,16 +182,26 @@
       }
     },
     methods: {
-      keypadClick (x) {
-        const clickCoordinates = x.target.getBoundingClientRect()
-        const rowcol = getKeypadRowAndCol(x.pageX, x.pageY, clickCoordinates, this.relativeKeyboardCoords)
-        const value = getValueBasedOnRowAndCol(rowcol)
+      handleValue (value) {
         if (value === 'E') {
           this.combination = ''
         } else if (this.combination.length < this.numberOfDigits) {
           this.combination = this.combination + value + ''
         }
         this.checkCombination()
+      },
+      keypadClick (x) {
+        const clickCoordinates = x.target.getBoundingClientRect()
+        const rowcol = getKeypadRowAndCol(x.pageX, x.pageY, clickCoordinates, this.relativeKeyboardCoords)
+        const value = getValueBasedOnRowAndCol(rowcol)
+        this.handleValue(value)
+      },
+      keyboardClick (event) {
+        const key = event.key
+        if (validKeys.indexOf(key) >= 0) {
+          this.handleValue(key)
+        }
+        event.preventDefault()
       },
       checkCombination () {
         if (this.isOk(this.combination)) {
