@@ -90,35 +90,66 @@ describe('Keypad.vue', () => {
       })
     })
   })
-  it('adds numbers pressed', () => {
-    wrapper.vm.relativeKeyboardCoords = [20, 12, 80, 85]
+  describe('when using keypad', () => {
+    it('adds numbers pressed', () => {
+      wrapper.vm.relativeKeyboardCoords = [20, 12, 80, 85]
 
-    wrapper.vm.keypadClick(CLICK_1)
-    wrapper.vm.keypadClick(CLICK_5)
+      wrapper.vm.keypadClick(CLICK_1)
+      wrapper.vm.keypadClick(CLICK_5)
 
-    expect(vm.combination).to.equal('15')
+      expect(vm.combination).to.equal('15')
+    })
+    it('does not exceed 4 numbers', () => {
+      wrapper.vm.relativeKeyboardCoords = [20, 12, 80, 85]
+
+      wrapper.vm.keypadClick(CLICK_1)
+      wrapper.vm.keypadClick(CLICK_5)
+      wrapper.vm.keypadClick(CLICK_1)
+      wrapper.vm.keypadClick(CLICK_5)
+      wrapper.vm.keypadClick(CLICK_1)
+      wrapper.vm.keypadClick(CLICK_5)
+
+      expect(vm.combination).to.equal('1515')
+    })
+    it('removes when pressed E', () => {
+      wrapper.vm.relativeKeyboardCoords = [20, 12, 80, 85]
+
+      wrapper.vm.keypadClick(CLICK_1)
+      wrapper.vm.keypadClick(CLICK_5)
+
+      wrapper.vm.keypadClick(CLICK_E)
+
+      expect(vm.combination).to.equal('')
+    })
   })
-  it('does not exceed 4 numbers', () => {
-    wrapper.vm.relativeKeyboardCoords = [20, 12, 80, 85]
+  describe('when using keyabord', () => {
+    const eventKey = key => ({key, preventDefault: () => { }})
 
-    wrapper.vm.keypadClick(CLICK_1)
-    wrapper.vm.keypadClick(CLICK_5)
-    wrapper.vm.keypadClick(CLICK_1)
-    wrapper.vm.keypadClick(CLICK_5)
-    wrapper.vm.keypadClick(CLICK_1)
-    wrapper.vm.keypadClick(CLICK_5)
+    it('adds numbers pressed', () => {
+      wrapper.vm.keyboardClick(eventKey('1'))
+      wrapper.vm.keyboardClick(eventKey('2'))
+      wrapper.vm.keyboardClick(eventKey('9'))
 
-    expect(vm.combination).to.equal('1515')
-  })
-  it('removes when pressed E', () => {
-    wrapper.vm.relativeKeyboardCoords = [20, 12, 80, 85]
+      expect(vm.combination).to.equal('129')
+    })
+    it('does not exceed 4 numbers', () => {
+      wrapper.vm.keyboardClick(eventKey('1'))
+      wrapper.vm.keyboardClick(eventKey('2'))
+      wrapper.vm.keyboardClick(eventKey('9'))
+      wrapper.vm.keyboardClick(eventKey('1'))
+      wrapper.vm.keyboardClick(eventKey('2'))
+      wrapper.vm.keyboardClick(eventKey('9'))
 
-    wrapper.vm.keypadClick(CLICK_1)
-    wrapper.vm.keypadClick(CLICK_5)
+      expect(vm.combination).to.equal('1291')
+    })
+    it('removes when pressed E', () => {
+      wrapper.vm.keyboardClick(eventKey('1'))
+      wrapper.vm.keyboardClick(eventKey('2'))
+      wrapper.vm.keyboardClick(eventKey('9'))
+      wrapper.vm.keyboardClick(eventKey('E'))
 
-    wrapper.vm.keypadClick(CLICK_E)
-
-    expect(vm.combination).to.equal('')
+      expect(vm.combination).to.equal('')
+    })
   })
   describe('checks combination', () => {
     it('checks when length<4', () => {
